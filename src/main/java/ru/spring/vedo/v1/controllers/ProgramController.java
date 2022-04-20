@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,7 +44,7 @@ public class ProgramController {
         return "programs";
     }
 
-    @PostMapping("/programs")
+    @PostMapping("/programs/add")
     public String addProgram(@RequestParam(required = false) String name,
                              @RequestParam(required = false) String start,
                              @RequestParam(required = false) String end, Model model) {
@@ -57,16 +58,24 @@ public class ProgramController {
         model.addAttribute("programs", programs);
         return "redirect:/programs";
     }
+
+//    @GetMapping("/programs/edit/{id}")
+//    public String editModalOpen(@PathVariable("id") String id, Model model) {
+//
+//        return ""
+//    }
+
     ////////////////edit!!!!!!!!
     @PostMapping("/programs/edit")
-    public String editProgram(@RequestParam String id,
-                              @RequestParam String name,
-                              @RequestParam String start,
-                              @RequestParam String end, Model model) {
-        Program program = programRepo.findById(Integer.parseInt(id));
-        program.setName("ABC");
-        program.setStart(start);
-        program.setEnd(end);
+    public String editProgram(@RequestParam String idEdit,
+                              @RequestParam String nameEdit,
+                              @RequestParam String startEdit,
+                              @RequestParam String endEdit, Model model) {
+        Program program = programRepo.findById(Integer.parseInt(idEdit));
+        program.setName(nameEdit);
+        program.setStart(startEdit);
+        program.setEnd(endEdit);
+//        programRepo.
         programRepo.save(program);
 
         Iterable<Program> programs = programRepo.findAll();
@@ -74,6 +83,8 @@ public class ProgramController {
         model.addAttribute("programs", programs);
         return "redirect:/programs";
     }
+
+
 
     @PostMapping("/programs/delete")
     public String deleteProgram(@RequestParam String id, Model model) {
