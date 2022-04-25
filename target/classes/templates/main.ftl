@@ -33,9 +33,11 @@
                         </ul>
                     </li>
                 </ul>
-                <div>
-                    <@l.logout/>
-                </div>
+                <form class="d-flex ms-2" action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+                    <button class="btn btn-outline-danger" type="submit">Log out</button>
+                </form>
             </div>
         </div>
     </nav>

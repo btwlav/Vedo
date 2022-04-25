@@ -1,6 +1,5 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
-<#import "parts/addForm.ftl" as a>
 
 <@c.page>
 
@@ -43,9 +42,28 @@
                     <#--                        <a class="nav-link disabled">Disabled</a>-->
                     <#--                    </li>-->
                 </ul>
-                <div>
-                    <@l.logout/>
-                </div>
+                <form class="d-flex" method="get" action="/coex">
+                    <label>
+                        <select class="form-select" name="filterCry">
+                            <option selected value="Без фильтров">Без фильтра</option>
+                            <option value="Название программы">Название программы</option>
+                            <option value="Исполнитель">Исполнитель</option>
+                        </select>
+                    </label>
+                    <#--                    </li>-->
+                    <input class="form-control ms-2 me-2" name="filterText" type="text" placeholder="Найти"
+                           value="${filter}"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Найти</button>
+                </form>
+                <form>
+                    <label class="ms-2" style="font-size: 2em; margin-top: -9px">|</label>
+                </form>
+                <form class="d-flex ms-2" action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+                    <button class="btn btn-outline-danger" type="submit">Log out</button>
+                </form>
             </div>
         </div>
     </nav>
@@ -72,20 +90,20 @@
             <button class="btn btn-outline-success" type="submit">Добавить</button>
         </form>
     </div>
-    <div>
-        <form method="get" action="/coex">
-            <label>
-                <input type="text" name="filterText" value="${filter}"/>
-            </label>
-            <button class="btn btn-primary" type="submit">Найти</button>
-            <label>
-                <select name="filterCry">
-                    <option value="Название программы">Название программы</option>
-                    <option value="Исполнитель">Исполнитель</option>
-                </select>
-            </label>
-        </form>
-    </div>
+<#--    <div>-->
+<#--        <form method="get" action="/coex">-->
+<#--            <label>-->
+<#--                <input type="text" name="filterText" value="${filter}"/>-->
+<#--            </label>-->
+<#--            <button class="btn btn-primary" type="submit">Найти</button>-->
+<#--            <label>-->
+<#--                <select name="filterCry">-->
+<#--                    <option value="Название программы">Название программы</option>-->
+<#--                    <option value="Исполнитель">Исполнитель</option>-->
+<#--                </select>-->
+<#--            </label>-->
+<#--        </form>-->
+<#--    </div>-->
     <label>Список соисполнителей</label>
     <#list coexs as coex>
         <form method="post" action="/coex/edit">
@@ -100,6 +118,6 @@
             </div>
         </form>
     <#else>
-        Список пуст
+        <div>Список пуст</div>
     </#list>
 </@c.page>
