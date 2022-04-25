@@ -5,10 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import ru.spring.vedo.v1.entity.Program;
 import ru.spring.vedo.v1.entity.User;
@@ -71,7 +68,7 @@ public class ProgramController {
                               @RequestParam String nameEdit,
                               @RequestParam String startEdit,
                               @RequestParam String endEdit, Model model) {
-        Program program = programRepo.findById(Integer.parseInt(idEdit));
+        Program program = programRepo.findById(2);
         program.setName(nameEdit);
         program.setStart(startEdit);
         program.setEnd(endEdit);
@@ -86,7 +83,7 @@ public class ProgramController {
 
 
 
-    @PostMapping("/programs/delete")
+    @GetMapping("/programs/delete")
     public String deleteProgram(@RequestParam String id, Model model) {
         programRepo.delete(programRepo.findById(Integer.parseInt(id)));
 

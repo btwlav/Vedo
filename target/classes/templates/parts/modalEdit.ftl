@@ -10,17 +10,17 @@
                     <form action="/programs/edit" method="post">
                         <div class="mb-3">
                             <label for="name" class="col-form-label">Наименование:</label>
-                            <input type="text" value="${name}" name="name" class="form-control" id="nameEdit"
+                            <input type="text" value="2" name="name" class="form-control" id="nameEdit"
                                    placeholder="Введите название программы">
                         </div>
                         <div class="mb-3">
                             <label for="start" class="col-form-label">Год начала:</label>
-                            <input type="text" value="${start}" name="start" class="form-control" id="startEdit"
+                            <input type="text" value="2" name="start" class="form-control" id="startEdit"
                                    placeholder="Введите год начала">
                         </div>
                         <div class="mb-3">
                             <label for="end" class="col-form-label">Год конца:</label>
-                            <input type="text" value="${end}" name="end" class="form-control" id="endEdit"
+                            <input type="text" value="2" name="end" class="form-control" id="endEdit"
                                    placeholder="Введите год конца">
                         </div>
                         <div class="modal-footer">

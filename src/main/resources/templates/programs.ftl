@@ -17,12 +17,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<#--                    <li class="nav-item">-->
-<#--                        <a class="nav-link active" aria-current="page" href="#">Home</a>-->
-<#--                    </li>-->
-<#--                    <li class="nav-item">-->
-<#--                        <a class="nav-link" href="#">Link</a>-->
-<#--                    </li>-->
+                    <#--                    <li class="nav-item">-->
+                    <#--                        <a class="nav-link active" aria-current="page" href="#">Home</a>-->
+                    <#--                    </li>-->
+                    <#--                    <li class="nav-item">-->
+                    <#--                        <a class="nav-link" href="#">Link</a>-->
+                    <#--                    </li>-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,7 +71,8 @@
 
 <#--    ДОДЕЛАТЬ НАВБАР-->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdd"
-            data-bs-whatever="@mdo">Добавить</button>
+            data-bs-whatever="@mdo">Добавить
+    </button>
 
     <div><label>Список программ</label></div>
     <#list programs as program>
@@ -81,11 +82,13 @@
                 <span>${program.name}</span>
                 <span>${program.start}-${program.end}</span>
                 <strong>${program.getUserName()}</strong>
-                <input type="hidden" value="${program.id}" name="id"/>
+                <input type="text" value="${program.id}" name="id"/>
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
-                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit" data-bs-whatever="@mdo">Изменить</a>
-                <@e.modalEdit id="${program.id}" name="${program.name}" start="${program.start}" end="${program.end}"/>
-                <a href="/programs/delete">Удалить</a>
+                <input type="button" class="btn btn-primary" data-bs-toggle="modal"
+                   data-bs-target="#modalEdit" value="Изменить"/>
+
+                <@e.modalEdit id="2" name="${program.name}" start="${program.start}" end="${program.end}"/>
+                <a class="btn btn-primary" href="/programs/delete">Удалить</a>
             </div>
         </form>
     <#else>
@@ -126,42 +129,5 @@
             </div>
         </div>
     </div>
-</@c.page>
 
-<#--<#macro modalEdit id, name, start, end>-->
-<#--    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<#--        <div class="modal-dialog">-->
-<#--            <div class="modal-content">-->
-<#--                <div class="modal-header">-->
-<#--                    <h5 class="modal-title" id="exampleModalLabel">Изменение программы</h5>-->
-<#--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<#--                </div>-->
-<#--                <div class="modal-body">-->
-<#--                    <form action="/programs/edit" method="post">-->
-<#--                        <div class="mb-3">-->
-<#--                            <label for="name" class="col-form-label">Наименование:</label>-->
-<#--                            <input type="text" value="${name}" name="name" class="form-control" id="nameEdit"-->
-<#--                                   placeholder="Введите название программы">-->
-<#--                        </div>-->
-<#--                        <div class="mb-3">-->
-<#--                            <label for="start" class="col-form-label">Год начала:</label>-->
-<#--                            <input type="text" value="${start}" name="start" class="form-control" id="startEdit"-->
-<#--                                   placeholder="Введите год начала">-->
-<#--                        </div>-->
-<#--                        <div class="mb-3">-->
-<#--                            <label for="end" class="col-form-label">Год конца:</label>-->
-<#--                            <input type="text" value="${end}" name="end" class="form-control" id="endEdit"-->
-<#--                                   placeholder="Введите год конца">-->
-<#--                        </div>-->
-<#--                        <div class="modal-footer">-->
-<#--                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>-->
-<#--                            <input type="hidden" name="idEdit" value="${id}"/>-->
-<#--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>-->
-<#--                            <button type="submit" class="btn btn-primary">Изменить</button>-->
-<#--                        </div>-->
-<#--                    </form>-->
-<#--                </div>-->
-<#--            </div>-->
-<#--        </div>-->
-<#--    </div>-->
-<#--</#macro>-->
+</@c.page>

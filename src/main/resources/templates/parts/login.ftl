@@ -11,7 +11,7 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <div><input type="submit" value="Sign In"/></div>
     </form>
-    <script type="text/javascript">
+    <script type="text/javascript" >
         function passBtn() {
             var pass = document.getElementById("pass");
             if (pass.type === "password") {
@@ -23,12 +23,4 @@
             }
         }
     </script>
-</#macro>
-
-<#macro logout>
-
-    <form action="/logout" method="post">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" value="Sign Out"/>
-    </form>
 </#macro>
